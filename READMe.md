@@ -43,7 +43,8 @@ EOF
 ## Jenkins CI Lab - Solution
 
 ##### Steps
-
+1. create a dev branch
+2. 
 ##### Source Code Management
 
 1. Set Branches to Build to develop

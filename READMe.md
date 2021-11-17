@@ -46,7 +46,9 @@ EOF
 1. create a dev branch
 2. checkout dev branch to work on the code and push
 3. create a webhook in gitHub to trigger with every commit/push from your local host to trigger this job
-4. 
+4. create a prathima-test-dev job to test the dev branch as soon as the code is pushed and to trigger another job upon success(test pass)
+5. create a prathima-merge job to merge the dev branch into the main and to trigger another job to deploy the code into the ec2 instance
+6. 
 ##### Source Code Management
 
 1. Set Branches to Build to develop

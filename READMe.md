@@ -44,7 +44,9 @@ EOF
 
 ##### Steps
 1. create a dev branch
-2. 
+2. checkout dev branch to work on the code and push
+3. create a webhook in gitHub to trigger with every commit/push from your local host to trigger this job
+4. 
 ##### Source Code Management
 
 1. Set Branches to Build to develop

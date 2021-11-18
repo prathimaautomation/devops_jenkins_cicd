@@ -101,7 +101,7 @@ Build Environment: select `Provide Node & npm bin/folder to PATH
    etc...
 Build: Execute shell: Command:
               ssh -A -o "StrictHostKeyChecking=no" ubuntu@34.254.205.37 << EOF
-    export DB_HOST=mongodb://54.194.63.14:27017/posts
+    export DB_HOST=mongodb://54.194.63.14:27017/posts (db-ip)
     #sudo apt-get update -y
     #sudo apt-get upgrade -y
     #sudo apt-get install nginx -y
@@ -112,8 +112,7 @@ Build: Execute shell: Command:
     rm -rf devops_jenkins_cicd
     git clone https://github.com/prathimaautomation/devops_jenkins_cicd.git
     cd devops_jenkins_cicd/environment/app
-    # cd folder/env/app/
-    
+        
     sudo chmod 777 provision.sh
     sudo ./provision.sh
     cd ..

@@ -119,7 +119,6 @@ Build: Execute shell: Command:
     sudo ./provision.sh
     cd ..
     cd ..
-    
     cd app
     sudo npm install 
     

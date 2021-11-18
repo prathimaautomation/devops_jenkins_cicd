@@ -70,8 +70,12 @@ GitHub project: `https://github.com/prathimaautomation/devops_jenkins_cicd.git` 
 Office 365 Connector: select `Restrict where this project can be run: Label Expression: sparta-ubuntu-node` (this help to run the job on the Jenkins agent node rather than Jenkins Master node)
 Source Code Management: select `Git`, Repository URL: git@github.com:prathimaautomation/devops_jenkins_cicd.git (SSH URL from github repository)
 Credentials: `devops-prathima` (private ssh key)
-Branches to build: Branch Specifier: */dev
-Build Triggers: select `GitHub hook trigger for GITScm polling`/Build after other projects are built (prathima-test)
+Branches to build: Branch Specifier: */main
+Additional Behaviours: Nameof repository: origin
+                       Branch to merge to: main
+                       Merge strategy: default
+                       Fast-forward mode: --ff
+Build Triggers: select `GitHub hook trigger for GITScm polling`
 Build Environment: select `Provide Node & npm bin/folder to PATH
    NodeJS Installation: Sparta-Node-JS
    etc...
@@ -80,15 +84,51 @@ Build: Execute shell: Command:
               git merge origin/dev
         
 Post-build Acttions: 
+Git Publisher: select `Merge Results` 
+
+Build other projects: Projects to build: `prathima-deploy` and select `Trigger only if build is stable`
+Click on Apply and Save
+```
+6. create a prathima-deploy job with aws credentials on jenkins to deploy the app on the main branch to copy onto the ec2 instance onthe aws
+```prathima-deploy job
+GitHub project: `https://github.com/prathimaautomation/devops_jenkins_cicd.git` (enter HTTP url from gitHUB project repo)
+Source Code Management: select `Git`, Repository URL: git@github.com:prathimaautomation/devops_jenkins_cicd.git (SSH URL from github repository)
+Credentials: `devops-prathima` (private ssh key)
+Branches to build: Branch Specifier: */main
+Build Triggers: select `GitHub hook trigger for GITScm polling`
+Build Environment: select `Provide Node & npm bin/folder to PATH
+   NodeJS Installation: Sparta-Node-JS
+   etc...
+Build: Execute shell: Command:
+              ssh -A -o "StrictHostKeyChecking=no" ubuntu@34.254.205.37 << EOF
+    export DB_HOST=mongodb://54.194.63.14:27017/posts
+    #sudo apt-get update -y
+    #sudo apt-get upgrade -y
+    #sudo apt-get install nginx -y
+    #sudo systemctl restart nginx 
+    #sudo systemctl enable nginx
+    #scp -
+    su - root
+    rm -rf devops_jenkins_cicd
+    git clone https://github.com/prathimaautomation/devops_jenkins_cicd.git
+    cd devops_jenkins_cicd/environment/app
+    # cd folder/env/app/
+    
+    sudo chmod 777 provision.sh
+    sudo ./provision.sh
+    cd ..
+    cd ..
+    cd app
+    sudo npm install 
+    
+Post-build Acttions: 
 Git Publisher: select `Push Only If BUild Succeeds` 
 Branches: Branch to push: main
           Target remote name: origin
 Build other projects: Projects to build: `prathima-deploy` and select `Trigger only if build is stable`
 Click on Apply and Save
-```
-
-6. create a prathima-deploy job with aws credentials on jenkins to deploy the app on the main branch to copy onto the ec2 instance onthe aws
-7. 
+```   
+7. Make some changes on the dev branch on localhost and push changes onto gitHub remote, which should trigger prathima-test, which inturn trigger prathima-merge and then prathima-deploy
 ##### Source Code Management
 
 1. Set Branches to Build to develop

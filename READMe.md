@@ -76,10 +76,14 @@ Build Environment: select `Provide Node & npm bin/folder to PATH
    NodeJS Installation: Sparta-Node-JS
    etc...
 Build: Execute shell: Command:
-              cd app
-              npm install
-              npm test
-Post-build Acttions: Build other projects: Projects to build: `prathima-merge` and select `Trigger only if build is stable`
+              git checkout main
+              git merge origin/dev
+        
+Post-build Acttions: 
+Git Publisher: select `Push Only If BUild Succeeds` 
+Branches: Branch to push: main
+          Target remote name: origin
+Build other projects: Projects to build: `prathima-deploy` and select `Trigger only if build is stable`
 Click on Apply and Save
 ```
 

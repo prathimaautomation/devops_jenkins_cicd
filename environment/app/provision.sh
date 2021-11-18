@@ -24,7 +24,7 @@ sudo apt-get install nginx -y
 
 # remove the old file and add our one
 sudo rm /etc/nginx/sites-available/default
-sudo cp /home/ubuntu/environment/nginx.default /etc/nginx/sites-available/default
+sudo cp ~/devops_jenkins_cicd/environment/nginx.default /etc/nginx/sites-available/default
 
 # finally, restart the nginx service so the new config takes hold
 sudo service nginx restart

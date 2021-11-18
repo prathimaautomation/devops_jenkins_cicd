@@ -75,7 +75,7 @@ Additional Behaviours: Nameof repository: origin
                        Branch to merge to: main
                        Merge strategy: default
                        Fast-forward mode: --ff
-Build Triggers: select `Build after other projects are built (prathima-test)`
+Build Triggers: select `GitHub hook trigger for GITScm polling`
 Build Environment: select `Provide Node & npm bin/folder to PATH
    NodeJS Installation: Sparta-Node-JS
    etc...
@@ -84,9 +84,8 @@ Build: Execute shell: Command:
               git merge origin/dev
         
 Post-build Acttions: 
-Git Publisher: select `Push Only If BUild Succeeds` 
-Branches: Branch to push: main
-          Target remote name: origin
+Git Publisher: select `Merge Results` 
+
 Build other projects: Projects to build: `prathima-deploy` and select `Trigger only if build is stable`
 Click on Apply and Save
 ```
@@ -96,7 +95,7 @@ GitHub project: `https://github.com/prathimaautomation/devops_jenkins_cicd.git` 
 Source Code Management: select `Git`, Repository URL: git@github.com:prathimaautomation/devops_jenkins_cicd.git (SSH URL from github repository)
 Credentials: `devops-prathima` (private ssh key)
 Branches to build: Branch Specifier: */main
-Build Triggers: select `Build after other projects are built (prathima-merge)`
+Build Triggers: select `GitHub hook trigger for GITScm polling`
 Build Environment: select `Provide Node & npm bin/folder to PATH
    NodeJS Installation: Sparta-Node-JS
    etc...

@@ -129,7 +129,7 @@ Branches: Branch to push: main
 Build other projects: Projects to build: `prathima-deploy` and select `Trigger only if build is stable`
 Click on Apply and Save
 ```   
-7. 
+7. Make some changes on the dev branch on localhost and push changes onto gitHub remote, which should trigger prathima-test, which inturn trigger prathima-merge and then prathima-deploy
 ##### Source Code Management
 
 1. Set Branches to Build to develop

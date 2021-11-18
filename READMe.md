@@ -121,7 +121,7 @@ Build: Execute shell: Command:
     sudo npm install 
     
 Post-build Acttions: 
-Git Publisher: select `Push Only If BUild Succeeds` 
+ 
 Branches: Branch to push: main
           Target remote name: origin
 Build other projects: Projects to build: `prathima-deploy` and select `Trigger only if build is stable`
